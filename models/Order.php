@@ -4,13 +4,12 @@ class Order
 {
     public static function add($email)
     {
-        $user = User::getCurrentUser() ?? null;
         $time = time();
         $products = Cart::getProducts();
 
         $db = Db::getInstance();
 
-        $db->exec("INSERT INTO orders(email) VALUES ('" . $user['email'] . "')");
+        $db->exec("INSERT INTO orders(email) VALUES ('" . $email . "')");
         $order_id = $db->lastInsertId();
 
         $order_product_tab_val = '';
